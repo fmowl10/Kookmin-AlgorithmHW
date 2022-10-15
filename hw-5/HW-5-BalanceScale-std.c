@@ -21,9 +21,9 @@ const int weights[] = {1, 2, 5, 10, 20, 50, 100};
 
 void putPebbleOnTheScale(const int *pebbles, const size_t size, int *leftPan, int *rightPan)
 {
-    *leftpan = pebbles[0];
+    *leftPan = pebbles[0];
     *rightPan = pebbles[1];
-    for (size_t i = 0; i < count; i++)
+    for (size_t i = 2; i < size; i++)
     {
         if (*leftPan == *rightPan)
             *leftPan += pebbles[i];
@@ -47,6 +47,10 @@ int balanceIt(int lightPan, int heavyPan, int count)
     {
         if (heavyPan - lightPan < weights[i])
             continue;
+
+        int tmp = balanceIt(lightPan + weights[i], heavyPan, count+1);
+        if(tmp != -1)
+            return tmp;
     }
 }
 
@@ -57,7 +61,7 @@ int main(int argc, char const *argv[])
     while (T--)
     {
         size_t n = 0;
-        scanf("%d", &n);
+        scanf("%ld", &n);
         int *array = malloc(sizeof(int) * n);
         for (size_t i = 0; i < n; i++)
         {
@@ -66,7 +70,8 @@ int main(int argc, char const *argv[])
         int leftPan = 0;
         int rightPan = 0;
         putPebbleOnTheScale(array, n, &leftPan, &rightPan);
-        int countWeights = balanceIt(fminl(rightPan, leftPan), fmax(rightPan, leftPan), 0);
+        int countWeights = balanceIt(fminl(rightPan, leftPan), fmaxl(rightPan, leftPan), 0);
+        printf("%d\n", countWeights);
 
         free(array);
     }
