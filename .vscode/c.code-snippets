@@ -1,0 +1,25 @@
+{
+    "includes": {
+        "prefix": "includes",
+        "body": [
+            "#include <stdio.h>",
+            "#include <stdlib.h>",
+            "#include <math.h>",
+            "#include <limits.h>",
+            "#include <string.h>",
+            "#include <stdbool.h>"
+        ],
+        "description": "include basic headers",
+        "scope": "c"
+    },
+    "func": {
+        "prefix": "func",
+        "body": [
+            "${1:return type} ${2:function name}(${3:args})",
+            "{",
+            "$BLOCK_COMMENT_START code here $BLOCK_COMMENT_END",
+            "}"
+        ],
+        "scope": "c"
+    }
+}
