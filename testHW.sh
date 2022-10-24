@@ -6,7 +6,7 @@ path="${fullPath%.*}"
 
 
 # compile it
-gcc $fullPath -o $path -lm -g
+gcc -std=c11 $fullPath -o $path -lm -w -g
 
 # diff
 inFile="${path}-in.txt"
