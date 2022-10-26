@@ -7,6 +7,7 @@
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
             "args": [],
+            "miDebuggerArgs": "'-ex' 'set args  < ${fileDirname}/${fileBasenameNoExtension}-in.txt'",
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
