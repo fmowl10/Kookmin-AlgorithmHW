@@ -16,12 +16,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-int m(int i, int j, int *ds, int table[i][j])
+int table[101][101];
+int m(int i, int j, int *ds)
 {
     if (i == j)
         return 0;
 
-    if (table[i][j] != -1)
+    if (table[i][j] != 0)
     {
         return table[i][j];
     }
@@ -30,7 +31,8 @@ int m(int i, int j, int *ds, int table[i][j])
 
     for (int k = i; k < j; k++)
     {
-        table[i][j] = fmin(table[i][j], m(i, k, ds, table) + m(k + 1, j, ds, table) + ds[i - 1] * ds[k] * ds[j]);
+        table[i][j] = fmin(table[i][j],
+                           m(i, k, ds) + m(k + 1, j, ds) + ds[i - 1] * ds[k] * ds[j]);
     }
     return table[i][j];
 }
@@ -45,7 +47,6 @@ int main(int argc, char const *argv[])
         scanf("%d", &N);
         N++;
         int ds[N];
-        int table[N][N];
         for (size_t i = 0; i < N; i++)
         {
             scanf("%d", ds + i);
@@ -54,11 +55,11 @@ int main(int argc, char const *argv[])
         {
             for (size_t j = 0; j < N; j++)
             {
-                table[i][j] = -1;
+                table[i][j] = 0;
             }
         }
 
-        int out = m(1, N - 1, ds, table);
+        int out = m(1, N - 1, ds);
         printf("%d\n", out);
     }
     return 0;
