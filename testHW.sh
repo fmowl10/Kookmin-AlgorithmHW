@@ -12,11 +12,13 @@ gcc -std=c11 $fullPath -o $path -lm -w -g
 inFile="${path}-in.txt"
 outFile="${path}-out.txt"
 
-diff -w <($path < $inFile) $outFile > /dev/null
+out=$(diff -w --color <($path < $inFile) $outFile)
 
 if [ $? -eq 0 ]
 then 
     echo "Success"
 else
     echo "Fail"
+    echo "diff"
+    echo $out
 fi
