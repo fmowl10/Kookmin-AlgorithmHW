@@ -1,0 +1,4 @@
+4 bcab
+26 abcdefghijklmnopqrstuvwxyz
+0
+1 k
